@@ -1,0 +1,38 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+hosts = {
+  "http1" => "192.168.33.101",
+}
+$script = <<SCRIPT
+yum update -y
+yum install httpd -y
+rm -rf /var/www/html
+ln -s /html /var/www/html
+systemctl enable httpd
+systemctl start httpd
+
+cat > /etc/hosts << EOF
+127.0.0.1   localhost localhost.localdomain localhost4 localhost4.localdomain4
+192.168.33.101 http1
+EOF
+
+SCRIPT
+
+Vagrant.configure("2") do |config|
+  hosts.each do |name, ip|
+    config.vm.define name do |machine|
+      machine.vm.box = "centos/7"
+      machine.vm.box_check_update = false
+      machine.ssh.insert_key = false
+      machine.vm.hostname = name
+      machine.vm.network :private_network, ip: ip
+      machine.vm.provision "shell", inline: $script
+      machine.vm.synced_folder "./html", "/html"
+      machine.vm.provider "virtualbox" do |v|
+          v.name = name
+          v.customize ["modifyvm", :id, "--memory", 2048]
+      end
+    end
+  end
+end
