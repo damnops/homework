@@ -1,0 +1,4 @@
+#! /bin/bash
+set -e
+
+docker run -dit --name httpd -p 8001:80 -v "$PWD"/src:/usr/local/apache2/htdocs httpd:2.4-alpine
