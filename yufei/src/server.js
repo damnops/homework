@@ -7,7 +7,7 @@ var path = require('path');
 var mysql = require('mysql');
 var bodyParser = require('body-parser');
 
-app.use(bodyParser.urlencoded({ extended: true}));
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 var routes = require('./api/routes/configRoutes.js');
@@ -17,8 +17,8 @@ app.get('/', function(err, res) {
     res.sendFile(path.join(__dirname+'/index.html'));
 });
 
-app.get('/test.js', function(err, res) {
-    res.sendFile(path.join(__dirname+'/test.js'));
+app.get('/index.js', function(err, res) {
+    res.sendFile(path.join(__dirname+'/index.js'));
 });
 
 app.listen(3000);

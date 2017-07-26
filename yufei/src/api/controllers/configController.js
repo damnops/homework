@@ -11,12 +11,9 @@ var conn = mysql.createConnection({
 conn.connect();
 
 exports.get_config = function(req, res) {
-
     conn.query('SELECT * from config', function(err, data, fields) {
         if (err)
           res.send(err);
-        console.log(data[0]);
         res.json(data);
     });
 };
-
