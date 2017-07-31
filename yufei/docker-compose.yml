@@ -1,0 +1,37 @@
+version: '2'
+services:
+  app:
+    build:
+      context: ./project
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    volumes:
+      - "./project/src:/app/src"
+    links:
+      - db:db
+    depends_on:
+      - db
+      - migration
+
+  db:
+    image: "mysql:5.6.37"
+    ports:
+      - "3306:3306"
+    volumes:
+      - "/data/mysql:/var/lib/mysql"
+      - "./migration/init_db.sql:/docker-entrypoint-initdb.d/init_db.sql"
+    environment:
+      MYSQL_ROOT_PASSWORD: 'P@ssword'
+    command: --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+
+  migration:
+    image: "dhoer/flyway:4.2-alpine"
+    volumes:
+      - "./migration/sql:/flyway/sql"
+      - "./migration/flyway.conf:/flyway/flyway.conf"
+    command: migrate
+    links:
+      - db:db
+    depends_on:
+      - db
