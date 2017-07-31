@@ -1,3 +1,3 @@
 ./auto/up
 
-visit `localhost:8001`
+visit `localhost:3000`
