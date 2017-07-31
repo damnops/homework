@@ -2,10 +2,10 @@
 
 var mysql = require('mysql');
 var conn = mysql.createConnection({
-    host: '10.202.129.176',
-    user: 'root',
-    password: 'P@ssword',
-    database: 'pandora'
+    host: process.env.DB_HOST,
+    user: process.env.DB_USER,
+    password: process.env.DB_PASSWORD,
+    database: process.env.DB_DATABASE
 });
 
 conn.connect();
