@@ -6,6 +6,33 @@ services:
       dockerfile: Dockerfile
     ports:
       - "80:80"
+    env_file:
+      - ./config/env/local
+    links:
+      - db:db.local.chatops.in
     volumes:
       - "./app/src:/app/src"
+    depends_on:
+      - db
+      - migration
+      
+  migration:
+    build:
+      context: ./migration
+      dockerfile: Dockerfile
+    env_file:
+      - ./config/env/local
+    links:
+      - db:db.local.chatops.in
+    volumes:
+      - "./migration:/app"
+    depends_on:
+      - db
 
+  db:
+    image: "mysql:5.5.53"
+    privileged: true
+    ports:
+      - "3306:3306"
+    env_file:
+      - ./config/env/local

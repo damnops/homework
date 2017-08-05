@@ -1,0 +1,7 @@
+#! /bin/bash
+set -e
+
+./auto/migration
+
+cd $(dirname $0)/..
+docker-compose up -d app

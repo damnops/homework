@@ -1,0 +1,8 @@
+DB_HOST=db.local.chatops.in
+DB_NAME=homework
+DB_USER=iamnoone
+DB_PASSWORD=allmenmustdie
+MYSQL_DATABASE=homework
+MYSQL_USER=iamnoone
+MYSQL_PASSWORD=allmenmustdie
+MYSQL_ROOT_PASSWORD=winteriscoming
