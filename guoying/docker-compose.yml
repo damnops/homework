@@ -1,0 +1,41 @@
+version: '2'
+services:
+  web:
+    build:
+      context: ./project
+      dockerfile: Dockerfile
+    ports:
+      - "9999:9999"
+    volumes:
+      - ./project:/app
+    links:
+      - "db:db"
+    depends_on:
+      - db
+
+  migration:
+    image: "dhoer/flyway:4.2"
+    # build:
+    #   context: ./migration
+    #   dockerfile: Dockerfile
+    volumes:
+      - "./migration/sql:/flyway/sql"
+      - "./migration/flyway.conf:/flyway/flyway.conf"
+    command: migrate
+    links:
+      - db:db
+    depends_on:
+      - db
+
+  db:
+    image: "mysql/mysql-server:5.6"
+    environment:
+      MYSQL_ROOT_PASSWORD: '123456'
+      MYSQL_DATABASE: 'myschema'
+      MYSQL_USER: 'test'
+      MYSQL_PASSWORD: '123456'
+    volumes:
+      - "/Users/yingguo/Project/OpsHomework/data/mysql:/var/lib/mysql/"
+    ports:
+      - "3306:3306"
+    command: --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci

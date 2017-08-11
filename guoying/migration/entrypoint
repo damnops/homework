@@ -1,0 +1,4 @@
+#!/bin/bash -e
+
+# flyway -url=jdbc:mysql://db -schemas=myschema -user=test -password=123456 migrate
+flyway migrate

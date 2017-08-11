@@ -1,0 +1,9 @@
+#! /bin/bash
+set -e
+./auto/up-db
+
+sleep 30
+./auto/migration
+
+cd $(dirname $0)/..
+docker-compose up -d
