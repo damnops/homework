@@ -42,8 +42,8 @@
 
 在前一步的基础上完成以下任务：
 
-1. 自建或选用一个合理的pipeline工具，最好支持pipeline as code，可以使用公开的CI工具，比如[Travis CI](https://travis-ci.org/)
-2. 生成版本化的产出物Artefact并保存在一个自建的或者可用的公开registry中，比如[Quay.io](https://quay.io)或者[Dockerhub](https://hub.docker.com/)
+1. 使用Jenkins或者GoCD搭建一个CI/CD的工具，了解其pipeline as code的原理。
+2. 生成版本化的产出物Artefact并保存在一个自建的或者可用的公开registry中，比如[Dockerhub](https://hub.docker.com/)
 3. 合理使用auto下面的脚本完成pipeline的环节
 4. 在pipeline中可以尝试加入unit test和deploy的环节，不需要真正的环节，只要有相应的调用即可。
 
