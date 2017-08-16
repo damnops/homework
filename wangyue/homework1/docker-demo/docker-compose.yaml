@@ -1,0 +1,10 @@
+version: '2'
+services:
+  app:
+    build:
+      context: ./app
+      dockerfile: Dockerfile
+    ports:
+      - "8001:80"
+    volumes:
+      - "./app/src:/usr/local/apache2/htdocs"
