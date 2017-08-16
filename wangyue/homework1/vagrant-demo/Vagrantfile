@@ -1,0 +1,16 @@
+Vagrant.configure("2") do |config|
+  config.vm.define :httpdServer do |httpdServer|
+    httpdServer.vm.provider "virtualbox" do |v|
+      v.customize ["modifyvm", :id, "--name", "httpdServer", "--memory", "2048"]
+    end
+    httpdServer.vm.box = "ubuntu/trusty64"
+    httpdServer.vm.hostname = "httpdServer"
+    httpdServer.vm.network :private_network, ip: "192.168.33.210"
+    httpdServer.vm.synced_folder "www", "/var/www/html"
+  end
+
+  config.vm.provision "shell", inline: <<-SHELL
+        apt-get update
+        apt-get install -y apache2
+  SHELL
+end
