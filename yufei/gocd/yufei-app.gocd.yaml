@@ -1,0 +1,13 @@
+pipelines:
+  yufei-app:
+    group: damnops
+    materials:
+      damnopsgit:
+        git: https://github.com/damnops/homework.git
+    stages:
+      - build:
+          jobs:
+            build:
+              tasks:
+                - exec:
+                    command: whoami

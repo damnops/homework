@@ -29,9 +29,6 @@ services:
         condition: on-failure
     environment:
       GO_SERVER_URL: "https://go-server:8154/go"
-    volumes:
-      - ./data:/godata
-      - ./go:/home/go
     links:
       - go-server:go-server
     depends_on:
