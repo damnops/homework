@@ -1,4 +1,5 @@
 FROM node:argon
+MAINTAINER "Wang Yue" <wywy08271@outlook.com>
 
 # Create app directory
 RUN mkdir -p /usr/src/app

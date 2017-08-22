@@ -1,0 +1,35 @@
+version: '2'
+services:
+  app:
+    build:
+      context: ./app
+      dockerfile: Dockerfile
+    ports:
+      - "49160:3000"
+    volumes:
+      - "./app:/usr/src/app"
+    links:
+      - "mongodb"
+    depends_on:
+      - "mongodb"
+      - "migration"
+
+  mongodb:
+    image: "mongo:latest"
+    env_file:
+      - ./env/local
+    volumes:
+      - "./db:/data/db"
+
+  migration:
+    build:
+      context: ./migration
+      dockerfile: Dockerfile
+    env_file:
+      - ./env/local
+    volumes:
+      - "./migration:/usr/src/app"
+    links:
+      - "mongodb"
+    depends_on:
+      - "mongodb"
