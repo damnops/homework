@@ -1,0 +1,9 @@
+#! /bin/bash
+set -e
+
+workdir=$(dirname $0)/../gocd
+cd $workdir
+docker-compose up -d go-server
+
+n=1; printf "Please set go-agent container number: "; read n
+docker-compose up -d --scale go-agent=$n

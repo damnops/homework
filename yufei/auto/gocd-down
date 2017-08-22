@@ -1,0 +1,7 @@
+#! /bin/bash
+set -e
+
+workdir=$(dirname $0)/../gocd
+cd $workdir
+
+docker-compose down
