@@ -1,0 +1,20 @@
+version: '3'
+services:
+
+  nginx:
+    image: nginx:1.9
+    ports:
+      - 8050:80
+    links:
+      - registry:registry
+    volumes:
+      - ./auth:/etc/nginx/conf.d
+      - ./auth/nginx.conf:/etc/nginx/nginx.conf:ro
+
+
+  registry:
+    image: registry:2
+    ports:
+      - 127.0.0.1:5000:5000
+    volumes:
+      - ./data:/var/lib/registry

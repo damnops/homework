@@ -1,4 +1,4 @@
 *node_modules
 gocd/data
 gocd/go
-
+docker-registry/data
