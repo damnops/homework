@@ -9,5 +9,5 @@ pipelines:
           jobs:
             build:
               tasks:
-                - exec:
-                    command: whoami
+                - exec: docker build -t yufei-app:$BUILD_NUMBER yufei/project
+i

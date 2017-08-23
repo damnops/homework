@@ -19,7 +19,9 @@ services:
     restart: always
 
   go-agent:
-    image: gocd/gocd-agent-ubuntu-16.04:v17.8.0
+    build:
+      context: .
+      dockerfile: Dockerfile
     networks:
       - gocd
     deploy:
@@ -29,6 +31,9 @@ services:
         condition: on-failure
     environment:
       GO_SERVER_URL: "https://go-server:8154/go"
+    volumes:
+      - ./data/pipelines:/godata/pipelines
+      - /var/run/docker.sock:/var/run/docker.sock
     links:
       - go-server:go-server
     depends_on:
