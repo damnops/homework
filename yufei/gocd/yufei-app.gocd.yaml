@@ -12,4 +12,4 @@ pipelines:
                 - exec:
                     command: /bin/bash
                     arguments:
-                    - "yufei/auto/test"
+                    - "yufei/auto/build"
