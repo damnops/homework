@@ -1,0 +1,6 @@
+#! /bin/bash
+set -e
+
+workdir=$(dirname $0)/../docker-registry
+cd $workdir
+docker-compose up -d

@@ -5,6 +5,15 @@ pipelines:
       damnopsgit:
         git: https://github.com/damnops/homework.git
     stages:
+      - test:
+          jobs:
+            unit-test:
+              tasks:
+                - exec:
+                    command: echo
+                    arguments:
+                      - "unit test passed!"
+
       - build:
           jobs:
             build:
@@ -13,3 +22,21 @@ pipelines:
                     command: /bin/bash
                     arguments:
                     - "yufei/auto/build"
+
+      - archive:
+          jobs:
+            push-to-registry:
+              tasks:
+                - exec:
+                    command: /bin/bash
+                    arguments:
+                    - "yufei/auto/deploy"
+
+      - deploy:
+          jobs:
+            deploy:
+              tasks:
+                - exec:
+                    command: echo
+                    arguments:
+                    - "deploy succeed!"
