@@ -1,0 +1,14 @@
+#! /bin/bash
+set -e
+
+whoami
+
+pwd
+
+echo $PATH
+
+ls -l /var/run
+
+ls -l /usr/local/bin
+
+which docker

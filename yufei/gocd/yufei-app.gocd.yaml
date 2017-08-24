@@ -10,4 +10,4 @@ pipelines:
             build:
               tasks:
                 - exec:
-                    command: docker build -t yufei-app yufei/project
+                    command: bash -c 'yufei/auto/test'
