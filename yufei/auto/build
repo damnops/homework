@@ -5,4 +5,4 @@ workdir=$(dirname $0)/../project
 
 echo $workdir
 
-docker build -t localhost:8050/yufei-app:$GO_PIPELINE_COUNTER workdir
+docker build -t localhost:8050/yufei-app:$GO_PIPELINE_COUNTER $workdir
