@@ -10,4 +10,6 @@ pipelines:
             build:
               tasks:
                 - exec:
-                    command: bash -c 'yufei/auto/test'
+                    command: /bin/bash
+                    arguments:
+                    - "yufei/auto/test"
