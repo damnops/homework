@@ -1,0 +1,4 @@
+#! /bin/bash
+set -e
+
+docker build -t yufei-app:$GO_PIPELINE_COUNTER project
