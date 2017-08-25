@@ -1,4 +1,4 @@
 #! /bin/bash
 set -e
 
-docker push localhost:8050/yufei-app:$GO_PIPELINE_COUNTER
+gosu root docker push localhost:8050/yufei-app:$GO_PIPELINE_COUNTER

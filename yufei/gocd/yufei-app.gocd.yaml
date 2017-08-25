@@ -30,7 +30,7 @@ pipelines:
                 - exec:
                     command: /bin/bash
                     arguments:
-                    - "yufei/auto/deploy"
+                    - "yufei/auto/archive"
 
       - deploy:
           jobs:
