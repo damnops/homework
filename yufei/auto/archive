@@ -1,4 +1,5 @@
 #! /bin/bash
 set -e
 
+gosu root docker login -u admin -p admin localhost:8050
 gosu root docker push localhost:8050/yufei-app:$GO_PIPELINE_COUNTER
