@@ -1,0 +1,13 @@
+#! /bin/bash -e
+
+cd $(dirname $0)/..
+source ./auto/functions
+
+declare -a RUNLIST=("postgresql" "gitlab" "redis")
+
+for r in ${RUNLIST[@]}; do
+	docker-compose --project-name ${PROJECTNAME} -f gitlab.yaml start ${r}
+done
+
+docker-compose --project-name ${PROJECTNAME} -f jenkins.yaml start
+docker-compose --project-name ${PROJECTNAME} -f registry.yaml start

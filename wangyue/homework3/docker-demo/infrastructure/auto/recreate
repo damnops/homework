@@ -1,0 +1,7 @@
+#! /bin/bash -e
+
+cd $(dirname $0)/..
+source ./auto/functions
+
+./auto/down
+./auto/up_docker

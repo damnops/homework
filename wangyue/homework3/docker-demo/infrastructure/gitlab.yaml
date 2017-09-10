@@ -1,0 +1,31 @@
+version: '2'
+services:
+  postgresql:
+    image: sameersbn/postgresql:9.5-3
+    env_file:
+      - ./env/gitlab
+    volumes:
+      - ./gitlab/postgresql:/var/lib/postgresql
+    restart: alwayss
+
+  gitlab:
+    image: sameersbn/gitlab
+    ports:
+      - "10080:80"
+      - "10022:22"
+    links:
+      - redis:redisio
+      - postgresql:postgresql
+    env_file:
+      - ./env/gitlab
+    volumes:
+      - ./gitlab/gitlab:/home/git/data
+    restart: always
+
+  redis:
+    image: sameersbn/redis
+    env_file:
+      - ./env/gitlab
+    volumes:
+      - ./gitlab/redis:/var/lib/redis
+    restart: always

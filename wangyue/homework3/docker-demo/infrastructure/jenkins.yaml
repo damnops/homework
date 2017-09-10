@@ -1,0 +1,16 @@
+version: '2'
+services:
+  jenkins:
+    build:
+      context: ./env
+      dockerfile: Dockerfile
+#    image: jenkinsci/jenkins:2.14
+    ports:
+        - "8080:8080"
+        - "50000:50000"
+    environment:
+        - JAVA_OPTS=-Duser.timezone=Asia/Shanghai
+    volumes:
+#        - /var/run/docker.sock:/var/run/docker.sock
+        - ./jenkins_home:/var/jenkins_homer
+    restart: always
